@@ -2,7 +2,7 @@
 ![](https://cdn.luogu.com.cn/upload/image_hosting/42ce5gj9.png)
 ## [A](https://codeforces.com/contest/1697/problem/A)
 [洛谷](https://www.luogu.com.cn/problem/CF1697A)
-```
+```c++
 #include<bits/stdc++.h>
 using namespace std;
 int T;
@@ -32,7 +32,7 @@ int main()
 显然，无论在哪一个长凳恢复能量，效果都是一样的，所以可以在能量不足到下一个长凳时恢复到恰好能到下一个长凳的能量。
 ## [B](https://codeforces.com/contest/1697/problem/B)
 [洛谷](https://www.luogu.com.cn/problem/CF1697B)
-```
+```c++
 #include<bits/stdc++.h>
 using namespace std;
 int n,m;
@@ -60,7 +60,7 @@ int main()
 因为要使免费的总价格尽可能高，所以选的一定是价格最高的x个物品，若选更多的物品，会使其中价格最低的y个总价更低，所以只要先排序，再用前缀和求$\sum a[i] ,i\in [n-x+y,n-x]$即可。
 ## [C](https://codeforces.com/contest/1697/problem/C)
 [洛谷](https://www.luogu.com.cn/problem/CF1697C)
-```
+```c++
 #include<bits/stdc++.h>
 using namespace std;
 int T;
@@ -121,7 +121,7 @@ int main()
 首先，只有s中字符b会移动，且不影响ac顺序，所以s，t中将b删去后的子序列若不相同则一定为NO。若相同，因为b往前交换前面必须是a，往后则必须是c，又因为s，t中b按序匹配一定是不劣于有交叉情况的（具体的懒得写了），所以只需统计a，c数量的前缀和，计算每个对应的b间是否只有a（s中b在t前）或c（s中b在t后）。
 ## [D](https://codeforces.com/contest/1697/problem/D)
 [洛谷](https://www.luogu.com.cn/problem/CF1697D)
-```
+```c++
 #include<bits/stdc++.h>
 using namespace std;
 int n,m;
