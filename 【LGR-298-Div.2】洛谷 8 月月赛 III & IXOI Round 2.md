@@ -186,4 +186,24 @@ int main()
 	return 0;
 }
 ```
+~~注意力不够惊人~~
 
+注意到一个序列为愚蠢的序列的充要条件为：
+
+1. 所有数之和为n;
+2. 任意大于1的数的左右必须是0;
+3. 两个连续的1一定没有被操作过 $\iff$ $\forall p_i=p_{i+1}=1,\displaystyle\sum^{i}_{j=1} p[i]=i$ 。 （ ~~没注意到~~ ）
+
+定义 $f[i][j][3]$ 为前 $i$ 个数，和为 $j$ ,第 $i$ 个数等于0（ $f[i][j][0]$ ）,等于1（ $f[i][j][1]$ ），或大于1（ $f[i][j][2]$ ）可以得到的本质不同的愚蠢序列的权值和。
+
+可以得到转移方程 $$f[i][j][0]=f[i-1][j][0]+f[i-1][j][1]+f[i-1][j][2] \newline f[i][j][1]=\Bigg(f[i-1][j-1][0]+\begin{cases}f[i-1][j-1][1]&\text{if }i=j\\0&\text{if }i\not =j\end{cases}\Bigg)\times x[i]\newline f[i][j][2]=\displaystyle\sum^{j}_{k=2} f[i-1][j-k][0]  \times x[i]^k$$
+
+现在可以用一个三重循环解决问题，要达到 $\Omicron(n^2)$ 需要优化 $f[i][j][2]$ 。
+
+可以发现在 $i$ 相同， $j$ 只增加1时 ， $f[i][j][2]$ 非常类似。
+
+具体来说， $f[i][j][2]=\displaystyle\sum^{j}_{k=2} f[i-1][j-k][0]  \times x[i]^k = f[i-1][j-2][0]\times k^2+k\displaystyle\sum^{j}_{k=3} f[i-1][j-k][0]  \times x[i]^{k-1}=f[i-1][j-2][0]\times k^2+kf[i][j-1][2]$
+
+这样就可以优化到 $\Omicron(n^2)$ 。
+
+然后发现空间会爆，所以把第一维滚动掉即可。
