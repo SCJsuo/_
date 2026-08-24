@@ -196,7 +196,7 @@ int main()
 
 定义 $f[i][j][3]$ 为前 $i$ 个数，和为 $j$ ,第 $i$ 个数等于0（ $f[i][j][0]$ ）,等于1（ $f[i][j][1]$ ），或大于1（ $f[i][j][2]$ ）可以得到的本质不同的愚蠢序列的权值和。
 
-可以得到转移方程 $$f[i][j][0]=f[i-1][j][0]+f[i-1][j][1]+f[i-1][j][2] \newline f[i][j][1]=\Bigg(f[i-1][j-1][0]+\begin{cases}f[i-1][j-1][1]&\text{if }i=j\\0&\text{if }i\not =j\end{cases}\Bigg)\times x[i]\newline f[i][j][2]=\displaystyle\sum^{j}_{k=2} f[i-1][j-k][0]  \times x[i]^k$$
+可以得到转移方程  $f[i][j][0]=f[i-1][j][0]+f[i-1][j][1]+f[i-1][j][2] \newline f[i][j][1]=(f[i-1][j-1][0]+(i==j)f[i-1][j-1][1])\times x[i]\newline f[i][j][2]=\displaystyle\sum^{j}_{k=2} f[i-1][j-k][0]  \times x[i]^k$  
 
 现在可以用一个三重循环解决问题，要达到 $\Omicron(n^2)$ 需要优化 $f[i][j][2]$ 。
 
